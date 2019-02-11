@@ -1,3 +1,5 @@
+
+
 function updateMultiplication() {
 
     $.ajax({
@@ -9,6 +11,27 @@ function updateMultiplication() {
         // Gets a random challenge from API and loads the data in the HTML
         $('.multiplication-a').empty().append(data.factorA);
         $('.multiplication-b').empty().append(data.factorB);
+    });
+}
+
+function updateStats(alias) {
+    $.ajax({
+        url: "/social-multiplication/results?alias=" + alias
+    }).then(function(data) {
+        $('#stats-body').empty();
+        data.forEach(function(row) {
+            $('#stats-body').append('<tr><td>'
+            + row.id + '</td>' + '<td>'
+            + row.multiplication.factorA
+            + ' x '
+            + row.multiplication.factorB
+            + '</td>'
+            + '<td>'
+            + row.resultAttempt
+            + '</td>'
+            + '<td>' + (row.correct === true ? 'YES' : 'NO')
+            + '</td></tr>');
+        });
     });
 }
 
@@ -42,6 +65,7 @@ $(document).ready(function() {
                 } else {
                     $('.result-message').empty().append("Ooops that's not correct! But keep trying!");
                 }
+                 updateStats(userAlias);
             }
         });
         updateMultiplication();

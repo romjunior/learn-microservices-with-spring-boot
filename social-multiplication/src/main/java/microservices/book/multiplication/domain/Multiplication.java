@@ -1,12 +1,8 @@
 package microservices.book.multiplication.domain;
 
 import lombok.*;
-import org.hibernate.annotations.GeneratorType;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @ToString
@@ -15,21 +11,23 @@ import javax.persistence.Id;
 public final class Multiplication {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private final int factorA;
     private final int factorB;
 
-    private final int result;
-
     public Multiplication(int factorA, int factorB) {
         this.factorA = factorA;
         this.factorB = factorB;
-        this.result = factorA * factorB;
     }
 
     public Multiplication() {
         this(0, 0);
     }
+
+    public int getResult() {
+        return factorA * factorB;
+    }
+
 }

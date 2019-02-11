@@ -15,7 +15,7 @@ import javax.persistence.Id;
 public final class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private final String alias;

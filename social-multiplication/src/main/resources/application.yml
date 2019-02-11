@@ -20,3 +20,15 @@ spring:
         show_sql: true
         temp:
           use_jdbc_metadata_defaults: false
+  rabbitmq:
+    host: 192.168.1.180
+    port: 30014
+    username: guest
+    password: guest
+
+
+
+multiplication:
+  exchange: multiplication_exchange
+  solved:
+    key: multiplication.solved

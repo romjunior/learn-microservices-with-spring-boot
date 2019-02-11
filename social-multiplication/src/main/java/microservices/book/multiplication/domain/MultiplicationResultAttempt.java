@@ -15,7 +15,7 @@ import javax.persistence.*;
 public final class MultiplicationResultAttempt {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(cascade = CascadeType.PERSIST)
@@ -25,6 +25,8 @@ public final class MultiplicationResultAttempt {
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "multiplication_id")
     private final Multiplication multiplication;
+
+    @Column(name = "resultattempt")
     private final int resultAttempt;
     private final boolean correct;
 

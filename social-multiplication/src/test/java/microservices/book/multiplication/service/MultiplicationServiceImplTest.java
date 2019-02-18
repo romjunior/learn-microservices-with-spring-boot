@@ -126,4 +126,20 @@ public class MultiplicationServiceImplTest {
                 (latestAttempts);
     }
 
+    @Test
+    public void getResultByIdTest() {
+        //given
+        Long resultId = 4L;
+        User user = new User("jhon_doe");
+        Multiplication multiplication = new Multiplication(50, 70);
+        MultiplicationResultAttempt expectedAttempt = new MultiplicationResultAttempt(user, multiplication, 3500, true);
+        BDDMockito.given(multiplicationResultAttemptRepository.findById(resultId)).willReturn(Optional.of(expectedAttempt));
+
+        //when
+        MultiplicationResultAttempt attempt = multiplicationServiceImpl.getResultById(resultId);
+
+        //then
+        Assertions.assertThat(attempt).isEqualTo(expectedAttempt);
+
+    }
 }

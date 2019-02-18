@@ -1,0 +1,36 @@
+server:
+  port: 8089
+  servlet:
+    contextPath: /gamification
+
+spring:
+  datasource:
+    url: jdbc:postgresql://192.168.1.180:30010/gamification_db
+    username: gamification
+    password: gamification
+    driverClassName: org.postgresql.Driver
+    hikari:
+      minimumIdle: 1
+      idleTimeout: 120000
+      maximumPoolSize: 2
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        show_sql: true
+        temp:
+          use_jdbc_metadata_defaults: false
+  rabbitmq:
+    host: 192.168.1.180
+    port: 30014
+    username: admin
+    password: admin
+
+multiplication:
+  exchange: multiplication_exchange
+  queue: gamification_multiplication_queue
+  anything:
+    routing-key: multiplication.*
+  solved:
+    key: multiplication.solved
+  host: http://localhost:8085/social-multiplication

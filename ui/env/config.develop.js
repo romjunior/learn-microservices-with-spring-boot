@@ -1,0 +1,1 @@
+angular.module('brinksPortal').value('absUrl', 'https://dev.accesstage.com.br/brinks-portal');

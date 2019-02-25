@@ -1,0 +1,9 @@
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+.gradle
+
+### Node ###
+
+node_modules/*
+node_modules
+package-lock.json

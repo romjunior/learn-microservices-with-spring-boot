@@ -23,8 +23,8 @@ spring:
   rabbitmq:
     host: 192.168.1.180
     port: 30014
-    username: admin
-    password: admin
+    username: guest
+    password: guest
 
 
 

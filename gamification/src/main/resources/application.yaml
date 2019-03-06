@@ -33,4 +33,4 @@ multiplication:
     routing-key: multiplication.*
   solved:
     key: multiplication.solved
-  host: http://localhost:8085/social-multiplication
+  host: http://localhost:8000/api

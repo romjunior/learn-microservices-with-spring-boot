@@ -13,3 +13,5 @@ Deploy: Executar o script V0 no gamification na pasta SQLs. Atualizar as conexõ
 ```gradle
 gradle -Dflyway.configFiles=flyway.conf flywayMigrate
 ```
+
+Repositório prático do livro [link] (https://github.com/microservices-practical)

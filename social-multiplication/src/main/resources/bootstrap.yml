@@ -1,13 +1,13 @@
 server:
-  port: 8089
-  servlet:
-    contextPath: /gamification
+  port: 8085
 
 spring:
+  application:
+    name: social-multiplication
   datasource:
-    url: jdbc:postgresql://192.168.1.180:30010/gamification_db
-    username: gamification
-    password: gamification
+    url: jdbc:postgresql://192.168.1.180:30010/social_multiplication_db
+    username: social_multiplication
+    password: social_multiplication
     driverClassName: org.postgresql.Driver
     hikari:
       minimumIdle: 1
@@ -26,11 +26,16 @@ spring:
     username: guest
     password: guest
 
+
+
 multiplication:
   exchange: multiplication_exchange
-  queue: gamification_multiplication_queue
-  anything:
-    routing-key: multiplication.*
   solved:
     key: multiplication.solved
-  host: http://localhost:8000/api
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

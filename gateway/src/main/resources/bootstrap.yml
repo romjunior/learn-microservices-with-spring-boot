@@ -1,0 +1,43 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: gateway
+
+zuul:
+  ignoredServices: '*'
+  ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+  prefix: /api
+  routes:
+    multiplications:
+      path: /multiplications/**
+      serviceId: social-multiplication
+      strip-prefix: false
+##      url: http://localhost:8085/social-multiplication/multiplications
+    results:
+      path: /results/**
+      serviceId: social-multiplication
+      strip-prefix: false
+##      url: http://localhost:8085//social-multiplication/results
+    leaders:
+      path: /leaders/**
+      serviceId: gamification
+      strip-prefix: false
+##      url: http://localhost:8089/gamification/leaders
+    stats:
+      path: /stats/**
+      serviceId: gamification
+      strip-prefix: false
+##      url: http://localhost:8089/gamification/stats
+
+endpoints:
+  trace:
+    sensitive: false
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

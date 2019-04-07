@@ -66,6 +66,11 @@ public class GameServiceImpl implements GameService{
         );
     }
 
+    @Override
+    public ScoreCard getScoreForAttempt(Long attemptId) {
+        return scoreCardRepository.findByAttemptId(attemptId);
+    }
+
     /**
      * Checks the total score and the different score cards
      obtained

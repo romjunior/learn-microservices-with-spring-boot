@@ -1,28 +1,24 @@
-package microservices.book.gamification.controller;
+package microservices.book.multiplication.controller;
 
-import microservices.book.gamification.service.AdminService;
-import org.assertj.core.api.Assertions;
+import microservices.book.multiplication.service.AdminService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.BDDMockito;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles(profiles = "test")
 @WebMvcTest(AdminController.class)
-public class AdminControllerEnabledTest {
+public class AdminControllerDisabledTest {
 
     @MockBean
     private AdminService adminService;
@@ -31,23 +27,21 @@ public class AdminControllerEnabledTest {
     private MockMvc mvc;
 
     /**
-     * This test checks that the controller is working as
-     expected when
-     * the profile is set to test (see annotation in class
-     declaration)
+     * This test checks that the controller is NOT ACCESSIBLE
+     * when profile is not set to test
+     *
      * @throws Exception if any error occurs
      */
     @Test
     public void deleteDatabaseTest() throws Exception {
-        //when
+        // when
         MockHttpServletResponse response = mvc.perform(
-                get("/gamification/admin/delete-db")
+                get("/multiplication/admin/delete-db")
                         .accept(MediaType.APPLICATION_JSON))
-                .andReturn()
-                .getResponse();
+                .andReturn().getResponse();
 
-        //then
-        Assertions.assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
-        BDDMockito.verify(adminService).deleteDatabaseContents();
+        // then
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.NOT_FOUND.value());
+        verifyZeroInteractions(adminService);
     }
 }

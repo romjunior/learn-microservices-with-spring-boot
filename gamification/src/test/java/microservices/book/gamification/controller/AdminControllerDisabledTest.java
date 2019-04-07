@@ -30,7 +30,7 @@ public class AdminControllerDisabledTest {
     public void deleteDatabaseTest() throws Exception {
         //when
         MockHttpServletResponse response = mvc.perform(MockMvcRequestBuilders
-                .post("/gamification/admin/delete-db")
+                .get("/gamification/admin/delete-db")
                 .accept(MediaType.APPLICATION_JSON))
                 .andReturn()
                 .getResponse();
